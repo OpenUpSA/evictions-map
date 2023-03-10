@@ -1,0 +1,131 @@
+.map-container {
+    background: #f7f7f7;
+    font-size: 16px;
+}
+
+
+.map-container .map-search-container-header * {
+    box-sizing: border-box;
+}
+
+.map-container .map-search-container-header {
+    font-family: sans-serif;
+    position: relative;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+
+
+.map-container .map-search-container .search-box {
+    flex: 1;
+    position: relative;
+    
+}
+
+.map-container .search-box input {
+    background-color: #EAEAEA;
+    font-size: 14px;
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    border: none;
+    border-radius: 0.6rem;
+    color: #333;
+
+    &:hover {
+        background-color: #dedede;
+    }
+    
+}
+
+.map-container .search-box input:focus {
+    outline: none;
+}
+
+
+.map-container .my-location {
+    padding: 0 0.7em 0 0.3em;
+}
+
+.map-container .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+
+.map-container .col-8 {
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+}
+
+.map-container .col-1 {
+    flex: 0 0 8.333333%;
+    max-width: 8.333333%;
+}
+
+.map-container .col-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+
+.map-container .search-or {
+    font-size: 0.8rem
+}
+
+
+.map-container .search-options {
+    width: 100%;
+    top: 3em;
+    position: absolute;
+    background: #f7f7f7;
+    border-radius: 0.6rem;
+    flex: 1;
+    z-index: 9999;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.map-container .search-options ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        margin: 0;
+        border-bottom: 1px solid #f5f5f5;
+        cursor: pointer;
+        font-size: 0.9em;
+        padding: 0.8em 1em;
+
+        &:hover {
+            background-color: #f5f5f5;
+        }
+    }
+}
+
+.map-container .geolocation-btn {
+    background-color: #2f80ed;
+    height: 40px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 0.8rem;
+    border-radius: 0.6rem;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 0 1.5em;
+
+    &:hover {
+        background-color: #4da6ff;
+        border-color: #4da6ff;
+
+    }
+}
+
+.map-container .map-container-map {
+    border-radius: 0.6rem;
+    overflow: hidden;
+}
