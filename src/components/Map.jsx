@@ -26,7 +26,7 @@ export class Map extends React.Component {
     constructor(){
         super();
         this.state = {
-            center: [-30.559482, 22.937506],
+            center: [-32.559482, 22.937506],
             zoom: 6,
             options: [],
             loading: false,
@@ -106,7 +106,7 @@ export class Map extends React.Component {
     render() {
         return (<div className="map-container">
             <div className="map-search-container-header row" onClick={() => this.closeSearch()}>
-                <div className="map-search-container-col search-box col-8">
+                <div className="map-search-container-col search-box col-1">
                     <input ref={this.searchRef} type="text" placeholder="Search for your address..." onChange={(e) => this.addressLookup(e.target.value)} className={this.state.loading ? 'loading' : ''}/>
                     <div className="search-options">
                         <ul>
@@ -123,7 +123,7 @@ export class Map extends React.Component {
                         </ul>
                     </div>
                 </div>
-                <div className="col search-or">
+                <div className="col-2 search-or">
                     OR
                 </div>
                 <div className="map-search-container-col my-location col-3">
@@ -133,7 +133,7 @@ export class Map extends React.Component {
             </div>
 
             <div onClick={() => this.closeSearch()} className="map-container-map">
-                <MapContainer ref={this.mapRef} center={this.state.center} zoom={this.state.zoom} scrollWheelZoom={false} style={{height: '600px'}} zoomControl={false}>
+                <MapContainer ref={this.mapRef} center={this.state.center} zoom={this.state.zoom} scrollWheelZoom={false} style={{height: '300px'}} zoomControl={false}>
                     <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
                     <ZoomControl position="bottomright"/>
                     {this.state.userLocated &&

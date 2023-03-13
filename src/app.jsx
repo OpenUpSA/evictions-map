@@ -32,6 +32,6 @@ export class App extends React.Component {
 }
 
 
-const container = document.getElementsByClassName('officemap')[0];
+const container = document.getElementsByClassName('officemap-widget')[0];
 const root = createRoot(container);
 root.render(<App />);
