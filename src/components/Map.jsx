@@ -38,7 +38,12 @@ export class Map extends React.Component {
         
     }
 
-    componentDidMount() {}
+    componentDidMount() {
+        let center = this.props.version == 'widget' ? [-32.559482, 22.937506] : [-29.559482, 22.937506];
+        this.setState({center: center}, () => {
+            this.mapRef.current.setView(this.state.center, this.state.zoom);
+        });
+    }
 
     addressLookup = (e) => {
         let self = this;
@@ -49,8 +54,10 @@ export class Map extends React.Component {
             this.timeout = setTimeout(() => {
                 this.timeout = null;
 
-                axios.get(`https://nominatim.openstreetmap.org/search?q=${e}&format=json&polygon=1&addressdetails=1&&countrycodes=za`)
+                axios.get(`https://nominatim.openstreetmap.org/search?q=${e}&format=json&polygon=1&addressdetails=1&countrycodes=za`)
                 .then(function (response) {
+
+                    console.log(response);
                     
                     self.setState({options: response.data.map((item) => {
                         return {
@@ -60,7 +67,7 @@ export class Map extends React.Component {
                     })})
                 })
                 
-            }, 1000);
+            }, 800);
         }
     }
 
@@ -103,11 +110,21 @@ export class Map extends React.Component {
 
     }
 
+   
+
     render() {
-        return (<div className="map-container">
-            <div className="map-search-container-header row" onClick={() => this.closeSearch()}>
-                <div className="map-search-container-col search-box col-1">
-                    <input ref={this.searchRef} type="text" placeholder="Search for your address..." onChange={(e) => this.addressLookup(e.target.value)} className={this.state.loading ? 'loading' : ''}/>
+        return (<div className={this.props.version == 'widget' ? 'map-container map-container-widget' : 'map-container map-container-full'}>
+
+            <div className="map-container-header">
+
+                <div className="map-search-header-container" onClick={() => this.closeSearch()}>
+                    <div className="search-box">
+                        <input ref={this.searchRef} type="text" placeholder={this.props.version == 'widget' ? 'Search for your address...' : 'Search for your address to find assistance near you...'} onChange={(e) => this.addressLookup(e.target.value)} className={this.state.loading ? 'loading' : ''}/>
+                    </div>
+                    <div className="search-text">OR</div>
+                    <div className="search-button">
+                        <button className="geolocation-btn" onClick={() => this.useLocation()}>Use my location</button>
+                    </div>
                     <div className="search-options">
                         <ul>
                             {this.state.options.map((item, index) => {
@@ -122,18 +139,14 @@ export class Map extends React.Component {
                             })}
                         </ul>
                     </div>
-                </div>
-                <div className="col-2 search-or">
-                    OR
-                </div>
-                <div className="map-search-container-col my-location col-3">
-                    <button className="geolocation-btn" onClick={() => this.useLocation()}>Use my location</button>
-                </div>
-                
+                </div>    
+
+
+
             </div>
 
             <div onClick={() => this.closeSearch()} className="map-container-map">
-                <MapContainer ref={this.mapRef} center={this.state.center} zoom={this.state.zoom} scrollWheelZoom={false} style={{height: '300px'}} zoomControl={false}>
+                <MapContainer ref={this.mapRef} center={this.state.center} zoom={this.state.zoom} scrollWheelZoom={false} style={{height: this.props.version === 'widget' ? '300px' : '600px'}} zoomControl={false}>
                     <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
                     <ZoomControl position="bottomright"/>
                     {this.state.userLocated &&

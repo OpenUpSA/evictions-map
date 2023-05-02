@@ -1,96 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+}
+
 .map-container {
-    background: #f7f7f7;
     font-size: 16px;
     font-family: 'Inter', sans-serif;
 }
 
+.map-container-widget {
+    background: #f7f7f7;
+}
 
-.map-container .map-search-container-header * {
+.map-container * {
     box-sizing: border-box;
 }
 
-.map-container .map-search-container-header {
+.map-container-header {
     position: relative;
-    width: 100%;
+}
+
+.map-container-full .map-container-header {
+    z-index: 999;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.map-container-full .map-search-header-container {
+    background: #fff;
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 1em;
+    position: relative; 
+    top: 2em;
+    border-radius: 4px;
+    padding-bottom: 0.7em;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.map-search-header-container {
+    display: flex;
+    gap: 10px;
+    position: relative;
+    align-items: center;
+}
+
+.map-container-widget .map-search-header-container {
     margin-bottom: 1em;
 }
 
 
-
-.map-container .map-search-container .search-box {
-    flex: 1;
-    position: relative;
-    
-}
-
-.map-container .search-box input {
-    background-color: #EAEAEA;
-    font-size: 14px;
+.search-box input {
     width: 100%;
     height: 40px;
-    padding-left: 10px;
     border: none;
-    border-radius: 0.6rem;
+    padding: 0 1em;
+    border-radius: .6rem;
     color: #333;
+    font-size: .875rem
+}
+
+.search-box input:focus, .search-box input:hover {
+    outline: none;
+    background-color: #dedede !important;
+}
+
+.map-container-full .search-box input {
+    background-color: #eaeaea;
+    background-image: url('icons/search-black.svg');
+    background-position: 12px 50%;
+    background-size: 2.25rem;
+    background-repeat: no-repeat;
+    padding-left: 50px;
+}
+
+.map-container-widget .search-box input {
+    background-color: #eaeaea;
+}
+
+.map-container-full .search-text {
+    display: none;
+}
+
+.search-text {
+    text-align: center;
+    font-size: .875rem;
+    width: 45px;
+}
+
+.search-button button {
+    background: #2f80ed;
+    color: #fff;
+    border: none;
+    border-radius: .6rem;
+    padding: 0 1.5em;
+    font-size: .875rem;
+    font-weight: 700;
+    height: 40px;
+    cursor: pointer;
 
     &:hover {
-        background-color: #dedede;
+        background: #4da6ff;
     }
-    
 }
 
-.map-container .search-box input:focus {
-    outline: none;
+.map-container-full .search-button button {
+    text-transform: uppercase;
 }
 
-
-.map-container .my-location {
-    // padding: 0 0.7em 0 0.3em;
+.map-container-full .search-box {
+    flex-basis: 80%;
 }
 
-.map-container .row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
+.map-container-widget .search-box {
+    flex-basis: 80%;
+    flex: 1
 }
 
-.map-container .col-1 {
-    flex: 2
-    
-}
-
-.map-container .col-2 {
-    width: 70px;
-}
-
-.map-container .col-3 {
-   flex: 1;
-   min-width: 150px;
-   max-width: 200px;
-}
-
-.map-container .search-or {
-    font-size: 0.8rem;
-    width: 70px !important;
-    text-align: center;
-}
-
-
-.map-container .search-options {
+.search-options {
+    z-index: 999;
     width: 100%;
     top: 3em;
     position: absolute;
-    background: #f7f7f7;
-    border-radius: 0.6rem;
-    flex: 1;
-    z-index: 9999;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    border-radius: 5px;
 }
 
-.map-container .search-options ul {
+.map-container-full .search-options {
+    margin: 1em 0 0 -1em;
+}
+
+.search-options ul {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -106,28 +148,4 @@
             background-color: #f5f5f5;
         }
     }
-}
-
-.map-container .geolocation-btn {
-    background-color: #2f80ed;
-    height: 40px;
-    width: 100%;
-    font-weight: bold;
-    font-size: 0.8rem;
-    border-radius: 0.6rem;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    padding: 0 1.5em;
-
-    &:hover {
-        background-color: #4da6ff;
-        border-color: #4da6ff;
-
-    }
-}
-
-.map-container .map-container-map {
-    border-radius: 0.6rem;
-    overflow: hidden;
 }
